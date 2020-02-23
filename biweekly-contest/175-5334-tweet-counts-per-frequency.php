@@ -29,42 +29,39 @@ class TweetCounts {
         switch ($freq) {
             case "minute":
                 $tmp = [];
-                for($i = $startTime; $i<= $endTime ; $i ++) {
+                for($i = $startTime; $i< $endTime ; $i ++) {
                     $mod = intval($i / 60);
+                    if(!isset($tmp[$mod])) {
+                        $tmp[$mod] = 0;
+                    }
                     if (isset($this->tweet[$tweetName][$i])) {
-                        if (isset($tmp[$mod])) {
-                            $tmp[$mod] ++;
-                        } else {
-                            $tmp[$mod] = 1;
-                        }
+                        $tmp[$mod] ++;
                     }
                 }
                 $result = array_merge($result, $tmp);
                 break;
             case "hour":
                 $tmp = [];
-                for($i = $startTime; $i<= $endTime ; $i ++) {
+                for($i = $startTime; $i< $endTime ; $i ++) {
                     $mod = intval($i / 3600);
+                    if(!isset($tmp[$mod])) {
+                        $tmp[$mod] = 0;
+                    }
                     if (isset($this->tweet[$tweetName][$i])) {
-                        if (isset($tmp[$mod])) {
-                            $tmp[$mod] ++;
-                        } else {
-                            $tmp[$mod] = 1;
-                        }
+                        $tmp[$mod] ++;
                     }
                 }
                 $result = array_merge($result, $tmp);
                 break;
             case "day":
                 $tmp = [];
-                for($i = $startTime; $i<= $endTime ; $i ++) {
+                for($i = $startTime; $i< $endTime ; $i ++) {
                     $mod = intval($i / (3600 * 24));
+                    if(!isset($tmp[$mod])) {
+                        $tmp[$mod] = 0;
+                    }
                     if (isset($this->tweet[$tweetName][$i])) {
-                        if (isset($tmp[$mod])) {
-                            $tmp[$mod] ++;
-                        } else {
-                            $tmp[$mod] = 1;
-                        }
+                        $tmp[$mod] ++;
                     }
                 }
                 $result = array_merge($result, $tmp);
