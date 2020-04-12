@@ -1,7 +1,7 @@
 package main
 
 func main() {
-	print(entityParser("&amp; is an HTML entity but &ambassador; is not."))
+	print(entityParser("&&&&&amp"))
 }
 
 func entityParser(text string) string {
@@ -20,7 +20,12 @@ func entityParser(text string) string {
 
 	for  _, letter := range text {
 		if string(letter) == "&" {
-			flag = true
+			if flag {
+				result += tmpString
+				tmpString = ""
+			}else {
+				flag = true
+			}
 		}
 
 		if flag {
@@ -39,5 +44,6 @@ func entityParser(text string) string {
 			flag = false
 		}
 	}
-	return result
+
+	return result+tmpString
 }
