@@ -37,3 +37,19 @@ func max(a, b int) int {
 
 
 
+func maxScore1(cardPoints []int, k int) int {
+	n := len(cardPoints)
+	leftSum := 0
+	rightSum := 0
+	for i := 0; i < k; i ++ {
+		leftSum += cardPoints[i]
+	}
+	result := leftSum
+	for j := 1; j <=k ; j ++ {
+		leftSum -= cardPoints[k - j]
+		rightSum += cardPoints[n -j]
+		result = max(result, leftSum +rightSum)
+	}
+	return result
+
+}
